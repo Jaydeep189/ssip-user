@@ -1,9 +1,14 @@
 <script>
 	import { prevent_default } from 'svelte/internal';
-    import { docStore, collectionStore } from 'sveltefire';
-    import { db } from '../../firebase/config';
-    const problems = collectionStore(db, 'Problems');
+	import { docStore, collectionStore } from 'sveltefire';
+	import { db } from '../../firebase/config';
+	const problems = collectionStore(db, 'Problems');
 	import Select from 'svelte-select';
+	let collection = [
+		{ value: '1', label: 'One' },
+		{ value: '2', label: 'Two' },
+		{ value: '3', label: 'Three' }
+	];
 </script>
 
 <section class="max-w-6xl mx-auto">
