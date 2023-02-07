@@ -15,6 +15,7 @@
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-cloudflare": "^2.0.1",
 		"@sveltejs/kit": "^1.5.0",
+		"@tailwindcss/forms": "^0.5.3",
 		"autoprefixer": "^10.4.13",
 		"postcss": "^8.4.21",
 		"prettier": "^2.8.0",
@@ -27,5 +28,10 @@
 		"vite": "^4.0.0",
 		"vite-plugin-pwa": "^0.14.1"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"firebase": "^9.17.1",
+		"svelte-select": "^5.2.0",
+		"sveltefire": "^0.2.3"
+	}
 }

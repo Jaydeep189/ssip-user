@@ -1,77 +1,149 @@
 <script>
+	import { userStore } from 'sveltefire';
 	import AMC from '../assets/amc_logo.jpg';
+	import { auth } from '../firebase/config';
+	const user = userStore(auth);
+	const handleSignOut = () => {
+		auth.signOut();
+		console.log(user);
+		// window.location.reload();
+	};
 	let isMobileNav = false;
 </script>
 
 <header class="bg-white mt-10 font-outfit">
 	<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 		<div class="flex h-16 items-center justify-between">
-			<div class="flex items-center justify-center md:gap-5 gap-2">
+			<a href="/" class="flex items-center justify-center md:gap-5 gap-2">
 				<img src={AMC} class="sm:h-24 h-14" alt="" />
 				<h1 class="font-bold sm:text-5xl text-3xl">AMC</h1>
-			</div>
+			</a>
 
 			<div class="md:flex md:items-center md:gap-12">
 				<nav class="hidden md:block" aria-labelledby="header-navigation">
 					<ul class="flex items-center font-semibold gap-6 text-lg">
-						<li>
-							<a class="text-gray-500 transition hover:text-black" href="#banner"> Home </a>
-						</li>
+						{#if $user}
+							<li>
+								<a class="text-gray-500 transition hover:text-black" href="/#about"> Home </a>
+							</li>
+							<li>
+								<a class="text-gray-500 transition hover:text-black" href="/#about">
+									Your Complaints
+								</a>
+							</li>
 
-						<li>
-							<a class="text-gray-500 transition hover:text-black" href="#about"> About </a>
-						</li>
+							<li>
+								<a class="text-gray-500 transition hover:text-black" href="/#process">
+									Complaints
+								</a>
+							</li>
+							<li>
+								<a class="text-gray-500 transition hover:text-black" href="/#contact"> Support </a>
+							</li>
+						{:else}
+							<li>
+								<a class="text-gray-500 transition hover:text-black" href="/"> Home </a>
+							</li>
 
-						<li>
-							<a class="text-gray-500 transition hover:text-black" href="#process"> Process </a>
-						</li>
+							<li>
+								<a class="text-gray-500 transition hover:text-black" href="/#about"> About </a>
+							</li>
 
-						<li>
-							<a class="text-gray-500 transition hover:text-black" href="#contact"> Contact </a>
-						</li>
+							<li>
+								<a class="text-gray-500 transition hover:text-black" href="/#process"> Process </a>
+							</li>
+
+							<li>
+								<a class="text-gray-500 transition hover:text-black" href="/#contact"> Contact </a>
+							</li>
+						{/if}
 					</ul>
 				</nav>
 
-				<div class="flex items-center gap-4">
-					<div class="sm:flex sm:gap-4">
-						<a
-							class="transition-transform hover:scale-105 duration-500 rounded-md hover:bg-indigo-700 bg-indigo-500 px-5 py-2.5 text-sm font-bold text-white shadow"
-							href="/"
-						>
-							Login
-						</a>
+				{#if $user}
+					<div class="flex items-center gap-4">
+						<div class="sm:flex sm:gap-4">
+							<div class="hidden sm:flex">
+								<button
+									on:click={() => handleSignOut()}
+									class="transition-transform hover:scale-105 duration-500 rounded-md bg-gray-900 px-5 py-2.5 text-sm font-bold text-white"
+								>
+									Logout
+								</button>
+							</div>
+						</div>
 
-						<div class="hidden sm:flex">
-							<a
-								class="transition-transform hover:scale-105 duration-500 rounded-md bg-gray-900 px-5 py-2.5 text-sm font-bold text-white"
-								href="/"
+						<div class="block md:hidden">
+							<button
+								on:click={() => {
+									isMobileNav = !isMobileNav;
+								}}
+								title="some"
+								class="rounded bg-gray-100 p-2 text-gray-500 transition hover:text-gray-500/75"
 							>
-								Register
-							</a>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									class="h-5 w-5"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M4 6h16M4 12h16M4 18h16"
+									/>
+								</svg>
+							</button>
 						</div>
 					</div>
-
-					<div class="block md:hidden">
-						<button
-							on:click={() => {
-								isMobileNav = !isMobileNav;
-							}}
-							title="some"
-							class="rounded bg-gray-100 p-2 text-gray-500 transition hover:text-gray-500/75"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="h-5 w-5"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-								stroke-width="2"
+				{:else}
+					<div class="flex items-center gap-4">
+						<div class="sm:flex sm:gap-4">
+							<a
+								class="transition-transform hover:scale-105 duration-500 rounded-md hover:bg-indigo-700 bg-indigo-500 px-5 py-2.5 text-sm font-bold text-white shadow"
+								href="/auth/login"
 							>
-								<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-							</svg>
-						</button>
+								Login
+							</a>
+
+							<div class="hidden sm:flex">
+								<a
+									class="transition-transform hover:scale-105 duration-500 rounded-md bg-gray-900 px-5 py-2.5 text-sm font-bold text-white"
+									href="/auth/register"
+								>
+									Register
+								</a>
+							</div>
+						</div>
+
+						<div class="block md:hidden">
+							<button
+								on:click={() => {
+									isMobileNav = !isMobileNav;
+								}}
+								title="some"
+								class="rounded bg-gray-100 p-2 text-gray-500 transition hover:text-gray-500/75"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									class="h-5 w-5"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M4 6h16M4 12h16M4 18h16"
+									/>
+								</svg>
+							</button>
+						</div>
 					</div>
-				</div>
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -85,9 +157,9 @@
 			<div class="flex h-full flex-col divide-y divide-gray-200 bg-gray-50">
 				<div class="overflow-y-scroll">
 					<header class="flex h-16 mt-4 items-center justify-between pl-6">
-						<span class="text-lg font-semibold text-indigo-500 uppercase tracking-widest">
+						<a href="/" class="text-lg font-semibold text-indigo-500 uppercase tracking-widest">
 							<img src={AMC} class="h-14" alt="" />
-						</span>
+						</a>
 
 						<button
 							on:click={() => {
@@ -124,7 +196,7 @@
 						<div class="flex justify-center mt-20" />
 						<a
 							class="mx-5  text-center border-t-0 border-b-0 transition-transform hover:scale-105 duration-500 rounded-md bg-gray-900 px-5 py-2.5 text-lg font-bold text-white"
-							href="/"
+							href="/auth/register"
 						>
 							Register
 						</a>
