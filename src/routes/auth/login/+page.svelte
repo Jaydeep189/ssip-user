@@ -48,6 +48,7 @@
 		window.confirmationResult.confirm(code).then((result: any) => {
 			const user = result.user;
 			console.log(user.uid);
+			localStorage.setItem('uid', user.uid);
 			Login(user.uid, name);
 			isLoading = false;
 			window.location.replace('/');

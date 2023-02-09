@@ -30,7 +30,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@tanstack/svelte-table": "^8.7.9",
 		"firebase": "^9.17.1",
+		"lucide-svelte": "^0.112.0",
 		"svelte-select": "^5.2.0",
 		"sveltefire": "^0.2.3"
 	}

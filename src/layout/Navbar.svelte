@@ -27,13 +27,19 @@
 								<a class="text-gray-500 transition hover:text-black" href="/#about"> Home </a>
 							</li>
 							<li>
-								<a class="text-gray-500 transition hover:text-black" href="/#about">
+								<a class="text-gray-500 transition hover:text-black" href="/your-complaints">
 									Your Complaints
 								</a>
 							</li>
 
 							<li>
-								<a class="text-gray-500 transition hover:text-black" href="/#process">
+								<a class="text-gray-500 transition hover:text-black" href="/new-complaint">
+									New Complaint
+								</a>
+							</li>
+
+							<li>
+								<a class="text-gray-500 transition hover:text-black" href="/complaints">
 									Complaints
 								</a>
 							</li>

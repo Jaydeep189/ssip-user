@@ -1687,6 +1687,18 @@
   dependencies:
     mini-svg-data-uri "^1.2.3"
 
+"@tanstack/svelte-table@^8.7.9":
+  version "8.7.9"
+  resolved "https://registry.yarnpkg.com/@tanstack/svelte-table/-/svelte-table-8.7.9.tgz#9e47862037a88d5b2e21ec22d07928f16398dddd"
+  integrity sha512-URouNiViWNi+XzJhjf5sn+wV/xmfOFanXWCldshENqRzegppYlFFb9t+0Y8fozsgWxKBFwfvT86ZEJfzOTencw==
+  dependencies:
+    "@tanstack/table-core" "8.7.9"
+
+"@tanstack/table-core@8.7.9":
+  version "8.7.9"
+  resolved "https://registry.yarnpkg.com/@tanstack/table-core/-/table-core-8.7.9.tgz#0e975f8a5079972f1827a569079943d43257c42f"
+  integrity sha512-4RkayPMV1oS2SKDXfQbFoct1w5k+pvGpmX18tCXMofK/VDRdA2hhxfsQlMvsJ4oTX8b0CI4Y3GDKn5T425jBCw==
+
 "@types/cookie@^0.5.1":
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.5.1.tgz#b29aa1f91a59f35e29ff8f7cb24faf1a3a750554"
@@ -2841,6 +2853,11 @@ lru-cache@^5.1.1:
   integrity sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==
   dependencies:
     yallist "^3.0.2"
+
+lucide-svelte@^0.112.0:
+  version "0.112.0"
+  resolved "https://registry.yarnpkg.com/lucide-svelte/-/lucide-svelte-0.112.0.tgz#e85c2320f18212d2c65ea847327af3e278a4ed6a"
+  integrity sha512-xvDu8p6EzrYzCupIjFQD+WkSwVYKMJhR/oCWZMOp/u0oG5KZbTVquS3K7hVsdzXxp6h80DbDfRGGdtsZIg9T4A==
 
 magic-string@^0.25.0, magic-string@^0.25.7:
   version "0.25.9"
