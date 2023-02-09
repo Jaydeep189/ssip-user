@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { FirebaseApp, User, Collection } from 'sveltefire';
+	import { collection, query, where } from 'firebase/firestore';
+	import { onMount } from 'svelte';
+	import { FirebaseApp, User, Collection, userStore } from 'sveltefire';
 	import YourComplaints from '../../components/complaints/YourComplaints.svelte';
 	import Loading from '../../components/Loading.svelte';
 	import { db, auth } from '../../firebase/config';
@@ -9,7 +11,10 @@
 	<div class="grid grid-cols-1 md:grid-cols-3 gap-5 my-20">
 		<FirebaseApp {auth} firestore={db}>
 			<User let:user>
-				<Collection ref={'Complaint-Registration'} let:data={com}>
+				<Collection
+					ref={query(collection(db, 'Complaint-Registration'), where('userId', '==', user.uid))}
+					let:data={com}
+				>
 					<div slot="loading">
 						<Loading />
 					</div>
