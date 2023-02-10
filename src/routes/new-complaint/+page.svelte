@@ -5,11 +5,11 @@
 	import { collectionStore } from 'sveltefire';
 	import { db, auth, storage } from '../../firebase/config';
 	const problems = collectionStore(db, 'Problems');
+	let wardSelected: { label: string; value: { id: string; area: [] } };
 	const getDepartment = async (docID: string) => {
 		const department = doc(db, 'Department', docID);
 		const docSnap = await getDoc(department);
 		departmentName = docSnap.data()?.name;
-		console.log(departmentName);
 	};
 
 	let departmentName = '';
@@ -41,8 +41,6 @@
 		},
 		label: ''
 	};
-	let wardSelected: SelectSchema;
-
 	interface SelectSchema {
 		value: {
 			deptId: string;
@@ -61,11 +59,12 @@
 		serverTimestamp,
 		where,
 		getDocs,
-		updateDoc
+		updateDoc,
+		collectionGroup
 	} from 'firebase/firestore';
+	import About from '../../components/home/About.svelte';
 
 	let isLoading = false;
-
 	const forceSubmit = () => {
 		if (file) {
 			const problemImage = ref(storage, fileName);
@@ -100,7 +99,7 @@
 		const check = query(
 			collection(db, 'Complaint-Registration'),
 			where('problemId', '==', problemSelected.value.problemId),
-			where('wardId', '==', wardSelected.value),
+			where('wardId', '==', wardSelected.value.id),
 			where('status', '!=', 'SOLVED')
 		);
 		const checkData = await getDocs(check);
@@ -141,7 +140,6 @@
 			}
 		}
 	};
-
 	const uploadData = async (isGroup: boolean) => {
 		if (isGroup) {
 			const check = query(
@@ -160,11 +158,12 @@
 				problemName: problemSelected.label,
 				deptId: problemSelected.value.deptId,
 				departmentName: departmentName,
-				wardId: wardSelected.value,
+				wardId: wardSelected.value.id,
 				wardName: wardSelected.label,
 				desc: description,
 				date: serverTimestamp(),
 				status: 'PENDING',
+				area: areaData.value,
 				groupId: groupIdOrignial,
 				isGroup: true,
 				name: complaintRegistrationDetails.name,
@@ -183,13 +182,14 @@
 				problemName: problemSelected.label,
 				deptId: problemSelected.value.deptId,
 				departmentName: departmentName,
-				wardId: wardSelected.value,
+				wardId: wardSelected.value.id,
 				wardName: wardSelected.label,
 				desc: description,
 				date: serverTimestamp(),
 				status: 'PENDING',
 				groupId: groupId,
 				isGroup: false,
+				area: areaData.value,
 				name: complaintRegistrationDetails.name,
 				email: complaintRegistrationDetails.email,
 				address: complaintRegistrationDetails.address,
@@ -208,6 +208,7 @@
 		console.log(mainFile);
 	};
 	let showPopup = false;
+	let areaData = '';
 </script>
 
 <section class="max-w-6xl mx-auto relative">
@@ -243,10 +244,11 @@
 				<Select
 					items={$ward.map((data) => {
 						return {
-							value: data.id,
+							value: { id: data.id, area: data.area },
 							label: data.name
 						};
 					})}
+					on:change={() => (areaData = '')}
 					bind:value={wardSelected}
 				/>
 			</div>
@@ -262,6 +264,20 @@
 				/>
 			</div>
 			<div class="col-span-6">
+				<label class="py-4" for="area">Area <span class="text-red-500 text-lg"> * </span></label>
+				<Select
+					class=" form-input rounded-lg bg-gray-100 w-full"
+					name="area"
+					bind:value={areaData}
+					items={wardSelected
+						? wardSelected.value.area
+							? wardSelected.value.area.map((data) => data)
+							: []
+						: []}
+				/>
+			</div>
+
+			<div class="col-span-12">
 				<label class="py-4" for="description"
 					>Description <span class="text-red-500 text-lg"> * </span></label
 				>
