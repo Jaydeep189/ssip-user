@@ -26,7 +26,7 @@
 		address: '',
 		contactName: '',
 		contactPhone: '',
-		houseNo: ''
+		tenantNo: ''
 	};
 	let file: any;
 	let mainFile: any;
@@ -100,6 +100,7 @@
 			collection(db, 'Complaint-Registration'),
 			where('problemId', '==', problemSelected.value.problemId),
 			where('wardId', '==', wardSelected.value.id),
+			where('area', '==', areaData.value),
 			where('status', '!=', 'SOLVED')
 		);
 		const checkData = await getDocs(check);
@@ -149,8 +150,9 @@
 			);
 			const checkData = await getDocs(check);
 			checkData.docs.map(async (document) => {
+				console.log(document.id);
 				await updateDoc(doc(db, 'Complaint-Registration', document.id), {
-					status: 'PENDING'
+					isGroup: true
 				});
 			});
 			addDoc(collection(db, 'Complaint-Registration'), {
@@ -171,7 +173,7 @@
 				address: complaintRegistrationDetails.address,
 				contactName: complaintRegistrationDetails.contactName,
 				contactPhone: complaintRegistrationDetails.contactPhone,
-				houseNo: complaintRegistrationDetails.houseNo,
+				tenantNo: complaintRegistrationDetails.tenantNo,
 				file: DownloadUrl,
 				userId: uid
 			});
@@ -195,7 +197,7 @@
 				address: complaintRegistrationDetails.address,
 				contactName: complaintRegistrationDetails.contactName,
 				contactPhone: complaintRegistrationDetails.contactPhone,
-				houseNo: complaintRegistrationDetails.houseNo,
+				tenantNo: complaintRegistrationDetails.tenantNo,
 				file: DownloadUrl,
 				userId: uid
 			});
@@ -348,9 +350,9 @@
 				/>
 			</div>
 			<div class="col-span-6">
-				<label class="py-4" for="house-no">Home/Flat No.</label>
+				<label class="py-4" for="house-no">Tenant No.</label>
 				<input
-					bind:value={complaintRegistrationDetails.houseNo}
+					bind:value={complaintRegistrationDetails.tenantNo}
 					name="house-no"
 					id=""
 					type="tel"
@@ -402,13 +404,9 @@
 
 			<p>Similar Problems : {similar_count}</p>
 			<div class="mt-8 flex items-center justify-center text-lg">
-				<!-- <button
-					type="button"
-					on:click={() => window.location.replace(`/complaints/${groupIdOrignial}`)}
-					class="rounded bg-green-50 px-4 py-2 font-medium text-green-600"
-				>
-					View Complaint
-				</button> -->
+				<a href="/" class="rounded bg-green-50 px-4 py-2 font-medium text-green-600">
+					Discard Complaint
+				</a>
 				<button
 					type="button"
 					on:click={() => forceSubmit()}

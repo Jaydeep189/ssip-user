@@ -8,7 +8,9 @@
 	export let department = '';
 	export let status = '';
 	export let phone = '';
+	export let date = '';
 	export let email = '';
+	export let area = '';
 	export let address = '';
 	export let contactName = '';
 	export let downloadLink = '';
@@ -39,6 +41,8 @@
 		<div class=" font-semibold ">
 			<h4 class="border-b-2">Department :</h4>
 			<h4 class="border-b-2">Ward :</h4>
+			<h4 class="border-b-2">Area :</h4>
+			<h4 class="border-b-2">Date :</h4>
 			<h4 class="border-b-2">Provided Name :</h4>
 			<h4 class="border-b-2">Provided Phone :</h4>
 			{#if email !== ''}
@@ -54,6 +58,8 @@
 		<div>
 			<h4 class="border-b-2">{department}</h4>
 			<h4 class="border-b-2">{ward}</h4>
+			<h4 class="border-b-2">{area}</h4>
+			<h4 class="border-b-2">{date}</h4>
 			<h4 class="border-b-2">{contactName}</h4>
 			<h4 class="border-b-2">{phone}</h4>
 			<h4 class="border-b-2">{email}</h4>
@@ -75,7 +81,7 @@
 				{#if isLoading}
 					<Loading />
 				{:else}
-					DELETE
+					CANCEL
 				{/if}
 			</button>
 		</div>
