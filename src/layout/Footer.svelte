@@ -108,86 +108,27 @@
 
 			<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2">
 				<div class="text-center sm:text-left">
-					<p class="text-lg font-medium text-gray-900">About Us</p>
-
-					<nav class="mt-8">
-						<ul class="space-y-4 text-sm">
-							<li>
-								<a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-									Company History
-								</a>
-							</li>
-
-							<li>
-								<a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-									Meet the Team
-								</a>
-							</li>
-
-							<li>
-								<a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-									Employee Handbook
-								</a>
-							</li>
-
-							<li>
-								<a class="text-gray-700 transition hover:text-gray-700/75" href="/"> Careers </a>
-							</li>
-						</ul>
-					</nav>
-				</div>
-
-				<div class="text-center sm:text-left">
 					<p class="text-lg font-medium text-gray-900">Our Services</p>
 
 					<nav class="mt-8">
 						<ul class="space-y-4 text-sm">
 							<li>
+								<a class="text-gray-700 transition hover:text-gray-700/75" href="/"> Services </a>
+							</li>
+
+							<li>
 								<a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-									Web Development
+									Health Services
 								</a>
 							</li>
 
 							<li>
-								<a class="text-gray-700 transition hover:text-gray-700/75" href="/"> Web Design </a>
+								<a class="text-gray-700 transition hover:text-gray-700/75" href="/"> Sanitation </a>
 							</li>
 
 							<li>
-								<a class="text-gray-700 transition hover:text-gray-700/75" href="/"> Marketing </a>
-							</li>
-
-							<li>
-								<a class="text-gray-700 transition hover:text-gray-700/75" href="/"> Google Ads </a>
-							</li>
-						</ul>
-					</nav>
-				</div>
-
-				<div class="text-center sm:text-left">
-					<p class="text-lg font-medium text-gray-900">Helpful Links</p>
-
-					<nav class="mt-8">
-						<ul class="space-y-4 text-sm">
-							<li>
-								<a class="text-gray-700 transition hover:text-gray-700/75" href="/"> FAQs </a>
-							</li>
-
-							<li>
-								<a class="text-gray-700 transition hover:text-gray-700/75" href="/"> Support </a>
-							</li>
-
-							<li>
-								<a class="group flex justify-center gap-1.5 sm:justify-start" href="/">
-									<span class="text-gray-700 transition group-hover:text-gray-700/75">
-										Live Chat
-									</span>
-
-									<span class="relative -mr-2 flex h-2 w-2">
-										<span
-											class="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75"
-										/>
-										<span class="relative inline-flex h-2 w-2 rounded-full bg-teal-500" />
-									</span>
+								<a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+									Waste Management
 								</a>
 							</li>
 						</ul>
