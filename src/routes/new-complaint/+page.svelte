@@ -217,14 +217,14 @@
 <section class="max-w-6xl mx-auto relative">
 	<form
 		on:submit={prevent_default}
-		class={`w-2/3 mx-auto bg-gray-50 shadow-xl p-10 rounded-xl my-20 transition-all duration-300 ${
+		class={`md:w-2/3 mx-6 md:mx-auto bg-gray-50 shadow-xl p-10 rounded-xl md:my-20 my-8 transition-all duration-300 ${
 			showPopup ? 'opacity-5' : 'opacity-100'
 		}`}
 	>
 		<div class="grid grid-cols-12 gap-5">
 			<h1 class="col-span-12 text-2xl font-bold py-2 border-b-2 border-gray-400">New Complaint</h1>
 
-			<div class=" col-span-6">
+			<div class=" col-span-12 md:col-span-6">
 				<label class="py-4" for="problem"
 					>Problem <span class="text-red-500 text-lg"> * </span>
 				</label>
@@ -242,7 +242,7 @@
 					bind:value={problemSelected}
 				/>
 			</div>
-			<div class=" col-span-6">
+			<div class=" col-span-12 md:col-span-6">
 				<label class="py-4" for="ward">Ward <span class="text-red-500 text-lg"> * </span></label>
 				<Select
 					items={$ward.map((data) => {
@@ -255,7 +255,7 @@
 					bind:value={wardSelected}
 				/>
 			</div>
-			<div class="col-span-6">
+			<div class="col-span-12 md:col-span-6">
 				<label class="py-4" for="department"
 					>Department <span class="text-red-500 text-lg"> * </span></label
 				>
@@ -266,7 +266,7 @@
 					disabled
 				/>
 			</div>
-			<div class="col-span-6">
+			<div class="col-span-12 md:col-span-6">
 				<label class="py-4" for="area">Area <span class="text-red-500 text-lg"> * </span></label>
 				<Select
 					class=" form-input rounded-lg bg-gray-100 w-full"
@@ -294,7 +294,7 @@
 			<h1 class="col-span-12 text-lg font-semibold py-1  border-b-2 border-gray-400">
 				Complaint Registation Details
 			</h1>
-			<div class="col-span-6">
+			<div class="col-span-12 md:col-span-6">
 				<label class="py-4" for="name">Name <span class="text-red-500 text-lg"> * </span></label>
 				<input
 					bind:value={complaintRegistrationDetails.name}
@@ -304,7 +304,7 @@
 					class=" form-textarea rounded-lg w-full"
 				/>
 			</div>
-			<div class="col-span-6">
+			<div class="col-span-12 md:col-span-6">
 				<label class="py-4" for="email">Email </label>
 				<input
 					bind:value={complaintRegistrationDetails.email}
@@ -314,7 +314,7 @@
 					class=" form-textarea rounded-lg w-full"
 				/>
 			</div>
-			<div class="col-span-6">
+			<div class="col-span-12 md:col-span-6">
 				<label class="py-4" for="address"
 					>Residential Address <span class="text-red-500 text-lg"> * </span></label
 				>
@@ -325,7 +325,7 @@
 					class=" form-textarea rounded-lg w-full"
 				/>
 			</div>
-			<div class="col-span-6">
+			<div class="col-span-12 md:col-span-6">
 				<label class="py-4" for="contact-name"
 					>Contact Person Name <span class="text-red-500 text-lg"> * </span></label
 				>
@@ -337,7 +337,7 @@
 					class=" form-textarea rounded-lg w-full"
 				/>
 			</div>
-			<div class="col-span-6">
+			<div class="col-span-12 md:col-span-6">
 				<label class="py-4" for="contact-phone"
 					>Contact Person Number <span class="text-red-500 text-lg"> * </span></label
 				>
@@ -350,7 +350,7 @@
 					class=" form-textarea rounded-lg w-full"
 				/>
 			</div>
-			<div class="col-span-6">
+			<div class="col-span-12 md:col-span-6">
 				<label class="py-4" for="house-no">Tenant No.</label>
 				<input
 					bind:value={complaintRegistrationDetails.tenantNo}
@@ -363,7 +363,7 @@
 			<h1 class="col-span-12 text-lg font-semibold py-1  border-b-2 border-gray-400">
 				Upload Documents/Images <span class="text-red-500 text-lg"> * </span>
 			</h1>
-			<div class="col-span-6">
+			<div class="col-span-12 md:col-span-6">
 				<input
 					name="name"
 					bind:value={file}
@@ -390,7 +390,9 @@
 		</div>
 	</form>
 	<div
-		class={`${showPopup ? '' : 'hidden'} absolute top-0 bottom-0 right-0 left-0 flex items-center`}
+		class={`${
+			showPopup ? '' : 'hidden'
+		} absolute top-0 mx-5 md:mx-0 right-0 left-0 flex items-center`}
 	>
 		<div class={` rounded-xl bg-white p-8 shadow-2xl max-w-5xl mx-auto `}>
 			<h2 class="text-xl font-bold text-center">Simillar Complaint Already Exisits</h2>

@@ -7,7 +7,7 @@
 	import { db, auth } from '../../firebase/config';
 </script>
 
-<section class="max-w-6xl mx-auto my-20">
+<section class="max-w-6xl mx-4 md:mx-auto md:my-20">
 	<FirebaseApp {auth} firestore={db}>
 		<User let:user>
 			<Collection
@@ -26,7 +26,10 @@
 					{#each com.reverse() as c}
 						{#if c.status !== 'SOLVED'}
 							<YourComplaints
+								isRegen={false}
 								area={c.area}
+								statusColor="text-yellow-500"
+								ticketNo={c.id}
 								problemName={c.problemName}
 								address={c.address}
 								date={c.date.toDate().toDateString()}
@@ -50,8 +53,13 @@
 					{#each com.reverse() as c}
 						{#if c.status == 'SOLVED'}
 							<YourComplaints
+								isRegen={true}
+								area={c.area}
+								statusColor="text-green-500"
+								ticketNo={c.id}
 								problemName={c.problemName}
 								address={c.address}
+								date={c.date.toDate().toDateString()}
 								ward={c.wardName}
 								department={c.departmentName}
 								desc={c.desc}

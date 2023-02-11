@@ -43,9 +43,6 @@
 									Complaints
 								</a>
 							</li>
-							<li>
-								<a class="text-gray-500 transition hover:text-black" href="/#contact"> Support </a>
-							</li>
 						{:else}
 							<li>
 								<a class="text-gray-500 transition hover:text-black" href="/"> Home </a>
@@ -195,17 +192,43 @@
 					<nav
 						class="flex flex-col divide-y divide-gray-200 mt-10 border-b border-gray-200 text-xl font-medium text-gray-500"
 					>
-						<a href="#banner" class="px-6 py-3"> Home </a>
-						<a href="#about" class="px-6 py-3"> About </a>
-						<a href="#process" class="px-6 py-3"> Process </a>
-						<a href="#contact" class="px-6 py-3"> Contact </a>
-						<div class="flex justify-center mt-20" />
-						<a
-							class="mx-5  text-center border-t-0 border-b-0 transition-transform hover:scale-105 duration-500 rounded-md bg-gray-900 px-5 py-2.5 text-lg font-bold text-white"
-							href="/auth/register"
-						>
-							Register
-						</a>
+						{#if $user}
+							<a on:click={() => (isMobileNav = false)} href="/" class="px-6 py-3"> Home </a>
+							<a on:click={() => (isMobileNav = false)} href="/your-complaints" class="px-6 py-3">
+								Your Complaints
+							</a>
+							<a on:click={() => (isMobileNav = false)} href="/new-complaint" class="px-6 py-3">
+								New Complaint
+							</a>
+							<a on:click={() => (isMobileNav = false)} href="/complaints" class="px-6 py-3">
+								Complaints
+							</a>
+							<div class="flex justify-center mt-20" />
+							<div
+								class="mx-5  text-center border-t-0 border-b-0 transition-transform hover:scale-105 duration-500 rounded-md bg-gray-900 px-5 py-2.5 text-lg font-bold text-white"
+								on:click={() => handleSignOut()}
+								on:keydown={() => {}}
+							>
+								LOGOUT
+							</div>
+						{:else}
+							<a on:click={() => (isMobileNav = false)} href="/" class="px-6 py-3"> Home </a>
+							<a on:click={() => (isMobileNav = false)} href="#about" class="px-6 py-3"> About </a>
+							<a on:click={() => (isMobileNav = false)} href="#process" class="px-6 py-3">
+								Process
+							</a>
+							<a on:click={() => (isMobileNav = false)} href="#contact" class="px-6 py-3">
+								Contact
+							</a>
+							<div class="flex justify-center mt-20" />
+							<a
+								class="mx-5  text-center border-t-0 border-b-0 transition-transform hover:scale-105 duration-500 rounded-md bg-gray-900 px-5 py-2.5 text-lg font-bold text-white"
+								href="/auth/register"
+								on:click={() => (isMobileNav = false)}
+							>
+								Register
+							</a>
+						{/if}
 					</nav>
 				</div>
 			</div>

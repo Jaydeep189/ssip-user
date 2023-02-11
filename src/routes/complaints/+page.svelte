@@ -56,7 +56,7 @@
 	const table = createSvelteTable(options);
 </script>
 
-<div class="p-2 max-w-6xl mx-auto my-20">
+<div class="p-2 max-w-6xl md:mx-auto md:my-20 mx-2">
 	<div class="relative flex flex-col">
 		<div class="overflow-x-auto shadow-md max-sm:py-10">
 			<div class="inline-block  min-w-full align-middle ">

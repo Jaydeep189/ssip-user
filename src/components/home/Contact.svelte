@@ -18,7 +18,7 @@
 			</div>
 
 			<div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-				<form action="" class="space-y-4">
+				<form action="https://formsubmit.co/sjaydeep189@gmail.com" method="POST" class="space-y-4">
 					<div>
 						<label class="sr-only" for="name">Name</label>
 						<input

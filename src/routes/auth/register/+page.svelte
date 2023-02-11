@@ -6,10 +6,13 @@
 	import { auth, db } from '../../../firebase/config';
 	import { onMount, prevent_default } from 'svelte/internal';
 	import Login from '../../../functions/auth/Login';
+
 	import { userStore } from 'sveltefire';
+	import { collection, getDocs, where, query } from 'firebase/firestore';
 	const user = userStore(auth);
 	auth.useDeviceLanguage();
 	let appVerifier: ApplicationVerifier;
+	let err = '';
 	onMount(() => {
 		window.recaptchaVerifier = new RecaptchaVerifier(
 			'sign-in-button',
@@ -26,22 +29,27 @@
 		);
 		appVerifier = window.recaptchaVerifier;
 	});
-	const sendOTP = () => {
-		console.log(phoneNumber);
+	const sendOTP = async () => {
 		isLoading = true;
-		signInWithPhoneNumber(auth, '+91' + phoneNumber, appVerifier)
-			.then((confirmationResult) => {
-				// SMS sent. Prompt user to type the code from the message, then sign the
-				// user in with confirmationResult.confirm(code).
-				window.confirmationResult = confirmationResult;
-				console.log(window.confirmationResult);
-				isCode = true;
-				isLoading = false;
-				// ...
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		const q = query(collection(db, 'User'), where('phoneNumber', '==', phoneNumber));
+		const querySnapshot = await getDocs(q);
+		if (querySnapshot.docs.length > 0) {
+			err = 'Phone number already exists';
+		} else {
+			signInWithPhoneNumber(auth, '+91' + phoneNumber, appVerifier)
+				.then((confirmationResult) => {
+					// SMS sent. Prompt user to type the code from the message, then sign the
+					// user in with confirmationResult.confirm(code).
+					window.confirmationResult = confirmationResult;
+					console.log(window.confirmationResult);
+					isCode = true;
+					isLoading = false;
+					// ...
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
 	};
 	const handleSignIn = async () => {
 		isLoading = true;

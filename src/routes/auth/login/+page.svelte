@@ -7,6 +7,7 @@
 	import { onMount, prevent_default } from 'svelte/internal';
 	import Login from '../../../functions/auth/Login';
 	import { userStore } from 'sveltefire';
+	import { collection, getDocs, query, where } from 'firebase/firestore';
 	const user = userStore(auth);
 	auth.useDeviceLanguage();
 	let appVerifier: ApplicationVerifier;
@@ -26,7 +27,7 @@
 		);
 		appVerifier = window.recaptchaVerifier;
 	});
-	const sendOTP = () => {
+	const sendOTP = async () => {
 		console.log(phoneNumber);
 		isLoading = true;
 		signInWithPhoneNumber(auth, '+91' + phoneNumber, appVerifier)
@@ -58,7 +59,7 @@
 	let code = '';
 	let isLoading = false;
 	let isCode = false;
-	let name = '';
+	let err = '';
 </script>
 
 <section class="max-w-6xl mx-auto">

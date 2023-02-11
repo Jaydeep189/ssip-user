@@ -1,5 +1,8 @@
 <script>
 	import BannerImage from '../../assets/banner-image.png';
+	import { userStore } from 'sveltefire';
+	import { auth } from '../../firebase/config';
+	const user = userStore(auth);
 </script>
 
 <section id="banner" class="max-w-6xl mx-auto flex justify-between flex-wrap lg:flex-nowrap pt-10">
@@ -15,15 +18,27 @@
 			portal to file your complaint
 		</p>
 		<div
-			class="flex lg:text-base text-xs lg:pt-8 pt-4 lg:pl-10 lg:justify-start justify-center lg:gap-10 gap-6"
+			class="flex lg:text-base text-xs lg:pt-8 pt-4 lg:pl-10 lg:justify-start items-center justify-center lg:gap-10 gap-6"
 		>
-			<button
-				type="button"
-				title="Register"
-				class="bg-indigo-500 rounded-xl transition-transform hover:scale-110 duration-500"
-			>
-				<span class="font-bold text-white p-5"> File Complaint </span>
-			</button>
+			{#if $user}
+				<a
+					type="button"
+					title="Register"
+					href="/new-complaint"
+					class="bg-indigo-500 px-3 py-3 rounded-xl transition-transform hover:scale-110 duration-500"
+				>
+					<span class="font-bold text-white p-5"> File Complaint </span>
+				</a>
+			{:else}
+				<a
+					type="button"
+					title="Register"
+					href="/auth/register"
+					class="bg-indigo-500 px-3 py-3 rounded-xl transition-transform hover:scale-110 duration-500"
+				>
+					<span class="font-bold text-white p-5"> File Complaint </span>
+				</a>
+			{/if}
 			<a
 				href="/#"
 				title="know more"
