@@ -178,7 +178,8 @@
 				userId: uid
 			});
 		} else {
-			const groupId = problemSelected.value.problemId + Math.floor(Math.random() * 1000);
+			const groupId =
+				problemSelected.value.problemId + wardSelected.value.id + Math.floor(Math.random() * 1000);
 			addDoc(collection(db, 'Complaint-Registration'), {
 				problemId: problemSelected.value.problemId,
 				problemName: problemSelected.label,
